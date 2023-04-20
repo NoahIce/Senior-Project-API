@@ -62,12 +62,15 @@ export const authenticateUser: RequestHandler = async (
     try {
         //Authenticate user
         let user = await UserDAO.authenticateUser(req.query.email as string, req.query.password as string);
-        await readPermissions(user)
-        console.log(user);
-        console.log(user[0].permissions);
-        res.status(200).json(user);
+        await readPermissions(user).then(() => {
+            console.log(user);
+            console.log(user[0].permissions);
+            res.status(200).json(user);
+        })
+
     } catch (error) {
-        console.log(error + "\nError in users.controller.authenticateUser")
+        console.log(error + "\nError in users.controller.authenticateUser awd")
+        res.status(401).json({ status: 401 });
     }
 }
 
