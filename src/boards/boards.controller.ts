@@ -3,8 +3,10 @@
 //boards are where the users manages their tasks. They contain Board Columns 
 import { Response, Request, RequestHandler, response } from "express";
 import { Board } from "./boards.model";
+import { Permission } from "../permissions/permissions.model"
 import * as BoardDAO from "./boards.dao"
 import * as BoardColumnsDAO from "../board_columns/board_columns.dao"
+import * as PermissionsDAO from "../permissions/permissions.dao"
 import { BoardColumn } from "../board_columns/board_columns.model";
 import * as BoardColumnsController from "../board_columns/board_columns.controller"
 import { OkPacket } from "mysql";
@@ -77,8 +79,28 @@ export const createBoard: RequestHandler = async (
         //Create board
         const OkPacket: OkPacket = await BoardDAO.createBoard(req.body);
         res.status(200).json(OkPacket);
+        console.log(req.body)
+        let board_id = OkPacket.insertId;
+        createPermission(req.body.user.user_id, board_id);
     } catch (error) {
         console.log(error + "\nError in users.controller.createUser")
+    }
+}
+
+async function createPermission(user_id: number, board_id: number) {
+    try {
+        var permission: Permission = {
+            permission_id: -1,
+            user_id: user_id,
+            board_id: board_id,
+            type: "admin",
+            boards: [],
+        }
+
+        await PermissionsDAO.createPermission(permission)
+    }
+    catch (error) {
+        console.log(error + "Error reading tasks")
     }
 }
 
@@ -104,6 +126,8 @@ export const deleteBoard: RequestHandler = async (
     try {
         //Delete all columns first
         deleteBoardColumns(parseInt(req.params.board_id as string));
+        //Delete all permissions first
+        await deleteBoardPermissions(parseInt(req.params.board_id as string));
         //Delete board
         let board = await BoardDAO.deleteBoard(parseInt(req.params.board_id as string));
 
@@ -132,6 +156,19 @@ async function deleteBoardColumns(board_id: number) {
         let boardColumns = await BoardColumnsDAO.readBoardColumnByBoardId(board_id);
         for (let i = 0; i < boardColumns.length; i++) {
             BoardColumnsDAO.deleteBoardColumn(boardColumns[i].board_column_id);
+        }
+    }
+    catch (error) {
+        console.log("Error reading tasks")
+    }
+}
+
+//Function to delete all permissions with a board
+async function deleteBoardPermissions(board_id: number) {
+    try {
+        let boardPermissions = await PermissionsDAO.readPermissionsBoardId(board_id);
+        for (let i = 0; i < boardPermissions.length; i++) {
+            PermissionsDAO.deletePermission(boardPermissions[i].permission_id);
         }
     }
     catch (error) {

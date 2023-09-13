@@ -9,11 +9,14 @@ export const taskQueries = {
     readTaskById: `
     SELECT * FROM scrumboardapp.tasks WHERE scrumboardapp.tasks.task_id = ?
     `,
+    getMatchingGoogleTasks: `
+    SELECT * FROM scrumboardapp.tasks WHERE google_id = ?
+    `,
     readTaskByColumnId: `
     SELECT * FROM scrumboardapp.tasks WHERE scrumboardapp.tasks.board_column_id = ?
     `,
     createTask: `
-    INSERT INTO scrumboardapp.tasks ( board_id, board_column_id, title, description, assignee, reviewer, story_points, priority ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+    INSERT INTO scrumboardapp.tasks ( board_id, board_column_id, title, description, assignee, reviewer, story_points, priority, google_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )
     `,
     updateTask: `
     UPDATE scrumboardapp.tasks SET board_id = ?, board_column_id = ?, title = ?, description = ?, assignee = ?, reviewer = ?, story_points = ?, priority = ? WHERE task_id = ?

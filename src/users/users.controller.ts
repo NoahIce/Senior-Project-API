@@ -34,6 +34,11 @@ export const readUserById: RequestHandler = async (
     try {
         //Get user by Id
         let user = await UserDAO.readUserById(parseInt(req.query.user_id as string));
+        await readPermissions(user).then(() => {
+            console.log(user);
+            console.log(user[0].permissions);
+            res.status(200).json(user);
+        })
         res.status(200).json(user);
     } catch (error) {
         console.log(error + "\nError in users.controller.readUserById");

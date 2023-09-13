@@ -16,6 +16,11 @@ export const readTaskById = async (task_id: number) => {
     return execute<Task[]>(taskQueries.readTaskById, [task_id]);
 };
 
+//Get all tasks with a matching google_id 
+export const getMatchingGoogleTasks = async (google_ids: string) => {
+    return execute<Task[]>(taskQueries.getMatchingGoogleTasks, google_ids);
+};
+
 //Read a task given a column Id
 export const readTaskByColumnId = async (board_column_id: number) => {
     return execute<Task[]>(taskQueries.readTaskByColumnId, [board_column_id]);
@@ -31,8 +36,8 @@ export const createTask = async (task: Task) => {
         task.assignee,
         task.reviewer,
         task.story_points,
-        task.priority
-
+        task.priority,
+        task.google_id
     ]);
 };
 
