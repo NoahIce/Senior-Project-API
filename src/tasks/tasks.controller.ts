@@ -16,7 +16,7 @@ export const readTasks: RequestHandler = async (
         let users = await TaskDAO.readTasks();
         res.status(200).json(users);
     } catch (error) {
-        console.log(error + "\nError in users.controller.readUsers");
+        console.log(error + "\nError in task.controller.readTasks");
     }
 
 }
@@ -31,7 +31,7 @@ export const readTaskById: RequestHandler = async (
         let user = await TaskDAO.readTaskById(parseInt(req.query.task_id as string));
         res.status(200).json(user);
     } catch (error) {
-        console.log(error + "\nError in users.controller.readUserById");
+        console.log(error + "\nError in task.controller.readTaskById");
     }
 }
 
@@ -58,11 +58,14 @@ export const createTask: RequestHandler = async (
 ) => {
     try {
         //Create new tasks
-        console.log(req.body)
+        console.log("creating task")
+        console.log(req.body.user_id)
+        console.log(req.body.google_id)
+        console.log(req.body.title)
         const OkPacket: OkPacket = await TaskDAO.createTask(req.body);
         res.status(200).json(OkPacket);
     } catch (error) {
-        console.log(error + "\nError in users.controller.createUser")
+        console.log(error + "\nError in tasks.controller.createTask")
     }
 }
 
@@ -73,10 +76,12 @@ export const updateTask: RequestHandler = async (
 ) => {
     try {
         //Update task
+        console.log("updating task")
+        //console.log("user_id: " + req.body.user_id)
         const OkPacket: OkPacket = await TaskDAO.updateTask(req.body);
         res.status(200).json(OkPacket);
     } catch (error) {
-        console.log(error + "\nError in users.controller.updateUser")
+        console.log(error + "\nError in tasks.controller.updateTask")
     }
 }
 
@@ -90,6 +95,6 @@ export const deleteTask: RequestHandler = async (
         let user = await TaskDAO.deleteTask(parseInt(req.params.task_id as string));
         res.status(200).json(user);
     } catch (error) {
-        console.log(error + "\nError in users.controller.updateUser")
+        console.log(error + "\nError in task.controller.deleteTask")
     }
 }

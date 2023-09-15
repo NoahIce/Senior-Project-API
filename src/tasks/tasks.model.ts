@@ -15,5 +15,6 @@ export interface Task {
     reviewer: number,
     story_points: number,
     priority: number,
-    google_id: string
+    google_id: string,
+    user_id: number
 }

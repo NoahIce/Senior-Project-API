@@ -37,7 +37,8 @@ export const createTask = async (task: Task) => {
         task.reviewer,
         task.story_points,
         task.priority,
-        task.google_id
+        task.google_id,
+        task.user_id
     ]);
 };
 
