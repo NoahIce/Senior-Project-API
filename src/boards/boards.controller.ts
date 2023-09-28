@@ -70,6 +70,19 @@ export async function readBoardByUserId(user_id: number): Promise<Board[]> {
     }
 }
 
+export async function readBoardByTasksListId(tasklist_id: string): Promise<Board[]> {
+    try {
+        //Get board by Id
+        let board = await BoardDAO.readBoardByTasksListId(tasklist_id);
+        //Attach columns to boards
+        await readColumns(board);
+        return board
+    } catch (error) {
+        console.log(error + "\nError in boards.controller.readBoardsByUserId");
+        return [];
+    }
+}
+
 //Create board given all fields except Id since Id is auto increment
 export const createBoard: RequestHandler = async (
     req: Request,
@@ -95,6 +108,7 @@ async function createPermission(user_id: number, board_id: number) {
             board_id: board_id,
             type: "admin",
             boards: [],
+            tasklist_id: ""
         }
 
         await PermissionsDAO.createPermission(permission)
@@ -142,7 +156,10 @@ export const deleteBoard: RequestHandler = async (
 async function readColumns(boards: Board[]) {
     try {
         for (let i = 0; i < boards.length; i++) {
-            boards[i].boardColumns = await BoardColumnsController.getBoardColumnsByBoardIdFunction(boards[i].board_id);
+            console.log(boards[i])
+            boards[i].boardColumns = await BoardColumnsController.getBoardColumnsByTaskListId(boards[i].tasklist_id);
+            console.log(boards[i])
+            //console.log(boards[i].boardColumns)
         }
     }
     catch (error) {

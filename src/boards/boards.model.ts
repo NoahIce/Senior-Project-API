@@ -7,5 +7,6 @@ import { BoardColumn } from "../board_columns/board_columns.model";
 export interface Board {
     board_id: number,
     title: string,
-    boardColumns: BoardColumn[]
+    boardColumns: BoardColumn[],
+    tasklist_id: string
 }

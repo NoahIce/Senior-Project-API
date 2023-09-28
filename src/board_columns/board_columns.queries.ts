@@ -13,6 +13,9 @@ export const boardColumnQueries = {
     readBoardColumnByBoardId: `
     SELECT * FROM scrumboardapp.board_columns WHERE scrumboardapp.board_columns.board_id = ?
     `,
+    getBoardColumnsByTaskListId: `
+    SELECT * FROM scrumboardapp.board_columns WHERE scrumboardapp.board_columns.tasklist_id = ?
+    `,
     createBoardColumn: `
     INSERT INTO scrumboardapp.board_columns ( board_id, title, position ) VALUES ( ?, ?, ? )
     `,

@@ -49,6 +49,30 @@ export async function getBoardColumnsById(board_column_id: number) {
     return columns;
 }
 
+export async function getBoardColumnsByTaskListId(tasklist_id: string) {
+    //Use DAO to get columns 
+    let columns = await BoardColumnDAO.getBoardColumnsByTaskListId(tasklist_id);
+    await readTasks(columns);
+    return columns;
+}
+
+export const getBoardColumnsByBoardId: RequestHandler = async (
+    req: Request,
+    res: Response
+) => {
+    try {
+        //Get columns given and Id from request.query.board_column_id
+        let columns = await BoardColumnDAO.readBoardColumnByBoardIdGoogle(req.query.board_id as string);
+        res.status(200).json(columns);
+        //Attach tasks to columns
+        await readTasks(columns);
+        //return columns;
+    } catch (error) {
+        return [];
+        console.log(error + "\nError in users.controller.readUserById");
+    }
+}
+
 export async function getBoardColumnsByBoardIdFunction(board_id: number): Promise<BoardColumn[]> {
     try {
         //Get columns given and Id from request.query.board_column_id

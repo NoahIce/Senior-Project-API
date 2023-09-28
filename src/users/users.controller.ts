@@ -36,7 +36,7 @@ export const readUserById: RequestHandler = async (
         let user = await UserDAO.readUserById(parseInt(req.query.user_id as string));
         await readPermissions(user).then(() => {
             console.log(user);
-            console.log(user[0].permissions);
+            //console.log(user[0].permissions);
             res.status(200).json(user);
         })
         res.status(200).json(user);
@@ -53,7 +53,10 @@ export const readUserByEmail: RequestHandler = async (
         //Get user by Id
         console.log(req.query.email);
         let user = await UserDAO.readUserByEmail(req.query.email as string);
-
+        await readPermissions(user).then(() => {
+            //console.log(user[0].permissions[0].boards);
+            //res.status(200).json(user);
+        })
         res.status(200).json(user);
     } catch (error) {
         console.log(error + "\nError in users.controller.readUserById");
@@ -123,9 +126,12 @@ export const deleteUser: RequestHandler = async (
 
 async function readPermissions(users: User[]) {
     try {
-        for (let i = 0; i < users.length; i++) {
-            users[i].permissions = await PermissionsController.readPermissionsByUserId(users[i].user_id);
+        if (users != null) {
+            for (let i = 0; i < users.length; i++) {
+                users[i].permissions = await PermissionsController.readPermissionsByEmail(users[i].email);
+            }
         }
+        else console.log("here")
     }
     catch (error) {
         console.log("Error reading permissions")

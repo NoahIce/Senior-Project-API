@@ -21,6 +21,10 @@ export const readBoardByUserId = async (user_id: number) => {
     return execute<Board[]>(boardQueries.readBoardByUserId, [user_id]);
 };
 
+export const readBoardByTasksListId = async (tasklist_id: string) => {
+    return execute<Board[]>(boardQueries.readBoardByTasksListId, [tasklist_id]);
+};
+
 //Create a new board
 export const createBoard = async (board: Board) => {
     return execute<OkPacket>(boardQueries.createBoard, [

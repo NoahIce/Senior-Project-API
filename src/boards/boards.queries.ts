@@ -12,6 +12,9 @@ export const boardQueries = {
     readBoardByUserId: `
     SELECT * FROM scrumboardapp.boards WHERE scrumboardapp.boards.user_id = ?
     `,
+    readBoardByTasksListId: `
+    SELECT * FROM scrumboardapp.boards WHERE scrumboardapp.boards.tasklist_id = ?
+    `,
     createBoard: `
     INSERT INTO scrumboardapp.boards ( title ) VALUES ( ? )
     `,

@@ -7,7 +7,7 @@ import { Task } from "../tasks/tasks.model";
 //BoardColumn structure
 export interface BoardColumn {
     board_column_id: number,
-    board_id: number,
+    board_id: string,
     title: string,
     position: number,
     tasks: Task[];

@@ -40,8 +40,34 @@ export async function readPermissionsByUserId(user_id: number): Promise<Permissi
     try {
         //Get all permissions with given Id
         let permission = await PermissionDAO.readPermissionByUserId(user_id);
-        await readBoards(permission);
-        return permission;
+        if (permission != null) {
+            console.log("full")
+            await readBoards(permission);
+            return permission;
+        }
+        else {
+            console.log("empyt");
+            return []
+        }
+    } catch (error) {
+        console.log(error + "\nError in users.controller.readUserById");
+        return [];
+    }
+}
+
+export async function readPermissionsByEmail(email: string): Promise<Permission[]> {
+    try {
+        //Get all permissions with given Id
+        let permission = await PermissionDAO.readPermissionByEmail(email);
+        if (permission != null) {
+            console.log("full")
+            await readBoards(permission);
+            return permission;
+        }
+        else {
+            console.log("empyt");
+            return []
+        }
     } catch (error) {
         console.log(error + "\nError in users.controller.readUserById");
         return [];
@@ -90,7 +116,7 @@ export const deletePermission: RequestHandler = async (
 async function readBoards(permissions: Permission[]): Promise<Permission[]> {
     try {
         for (let i = 0; i < permissions.length; i++) {
-            permissions[i].boards = await BoardsController.readBoardByIdFunction(permissions[i].board_id);
+            permissions[i].boards = await BoardsController.readBoardByTasksListId(permissions[i].tasklist_id);
         }
     }
     catch (error) {

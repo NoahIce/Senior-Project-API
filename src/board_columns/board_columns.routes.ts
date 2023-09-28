@@ -10,6 +10,7 @@ const router = Router();
 //Routes
 router.route("/boardColumns").get(boardColumnsController.readBoardColumns); //get all
 router.route("/boardColumns/readBoardColumnById").get(boardColumnsController.readBoardColumnById); //get by id
+router.route("/boardColumns/getBoardColumnsByBoardId").get(boardColumnsController.getBoardColumnsByBoardId);
 router.route("/boardColumns/createBoardColumn").post(boardColumnsController.createBoardColumn); //create
 router.route("/boardColumns/updateBoardColumn").put(boardColumnsController.updateBoardColumn); //update
 router.route("/boardColumns/deleteBoardColumn/:board_column_id").delete(boardColumnsController.deleteBoardColumn); //delete

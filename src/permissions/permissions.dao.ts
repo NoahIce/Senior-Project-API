@@ -21,6 +21,10 @@ export const readPermissionByUserId = async (user_id: number) => {
     return execute<Permission[]>(permissionQueries.readPermissionByUserId, [user_id]);
 }
 
+export const readPermissionByEmail = async (email: string) => {
+    return execute<Permission[]>(permissionQueries.readPermissionByEmail, [email]);
+}
+
 //Get all permissions with a given user Id
 export const readPermissionsBoardId = async (board_id: number) => {
     return execute<Permission[]>(permissionQueries.readPermissionsBoardId, [board_id]);

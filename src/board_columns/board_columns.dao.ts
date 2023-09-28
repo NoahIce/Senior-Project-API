@@ -22,6 +22,15 @@ export const readBoardColumnByBoardId = async (board_id: number) => {
     return execute<BoardColumn[]>(boardColumnQueries.readBoardColumnByBoardId, [board_id]);
 }
 
+export const getBoardColumnsByTaskListId = async (tasklist_id: string) => {
+    return execute<BoardColumn[]>(boardColumnQueries.getBoardColumnsByTaskListId, [tasklist_id]);
+}
+
+//Read column given board_id
+export const readBoardColumnByBoardIdGoogle = async (board_id: string) => {
+    return execute<BoardColumn[]>(boardColumnQueries.readBoardColumnByBoardId, [board_id]);
+}
+
 //Create column given json object
 export const createBoardColumn = async (board_column: BoardColumn) => {
     return execute<OkPacket>(boardColumnQueries.createBoardColumn, [

@@ -12,6 +12,9 @@ export const permissionQueries = {
     readPermissionByUserId: `
     SELECT * FROM scrumboardapp.permissions WHERE scrumboardapp.permissions.user_id = ?
     `,
+    readPermissionByEmail: `
+    SELECT * FROM scrumboardapp.permissions WHERE scrumboardapp.permissions.email = ?
+    `,
     readPermissionsBoardId: `
     SELECT * FROM scrumboardapp.permissions WHERE scrumboardapp.permissions.board_id = ?`,
     createPermission: `
