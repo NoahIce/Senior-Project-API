@@ -16,10 +16,10 @@ export const taskQueries = {
     SELECT * FROM scrumboardapp.tasks WHERE scrumboardapp.tasks.board_column_id = ?
     `,
     createTask: `
-    INSERT INTO scrumboardapp.tasks ( board_id, board_column_id, title, description, assignee, reviewer, story_points, priority, google_id, user_id ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+    INSERT INTO scrumboardapp.tasks ( board_id, board_column_id, title, description, assignee, reviewer, story_points, priority, google_id, due ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
     `,
     updateTask: `
-    UPDATE scrumboardapp.tasks SET board_id = ?, board_column_id = ?, title = ?, description = ?, assignee = ?, reviewer = ?, story_points = ?, priority = ? WHERE task_id = ?
+    UPDATE scrumboardapp.tasks SET board_id = ?, board_column_id = ?, title = ?, description = ?, assignee = ?, reviewer = ?, story_points = ?, priority = ?, due = ? WHERE task_id = ?
     `,
     deleteTask: `
     DELETE FROM scrumboardapp.tasks WHERE task_id = ?

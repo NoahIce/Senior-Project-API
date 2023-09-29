@@ -17,7 +17,7 @@ export const boardColumnQueries = {
     SELECT * FROM scrumboardapp.board_columns WHERE scrumboardapp.board_columns.tasklist_id = ?
     `,
     createBoardColumn: `
-    INSERT INTO scrumboardapp.board_columns ( board_id, title, position ) VALUES ( ?, ?, ? )
+    INSERT INTO scrumboardapp.board_columns ( board_id, title, position, tasklist_id ) VALUES ( ?, ?, ?, ? )
     `,
     updateBoardColumn: `
     UPDATE scrumboardapp.board_columns SET board_id = ?, title = ?, position = ? WHERE board_column_id = ?

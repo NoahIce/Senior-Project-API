@@ -11,5 +11,6 @@ export interface Permission {
     board_id: number,
     boards: Board[],
     type: string,
+    email: string,
     tasklist_id: string
 }

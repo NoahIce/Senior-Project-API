@@ -38,7 +38,22 @@ export const createTask = async (task: Task) => {
         task.story_points,
         task.priority,
         task.google_id,
-        task.user_id
+        task.due
+    ]);
+};
+
+export const moveTask = async (task: Task) => {
+    return execute<OkPacket>(taskQueries.updateTask, [
+        task.board_id,
+        task.board_column_id,
+        task.title,
+        task.description,
+        task.assignee,
+        task.reviewer,
+        task.story_points,
+        task.priority,
+        task.task_id,
+        task.due
     ]);
 };
 
@@ -53,7 +68,9 @@ export const updateTask = async (task: Task) => {
         task.reviewer,
         task.story_points,
         task.priority,
-        task.task_id
+        task.due,
+        task.task_id,
+        
     ]);
 };
 

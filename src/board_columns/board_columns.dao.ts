@@ -36,8 +36,8 @@ export const createBoardColumn = async (board_column: BoardColumn) => {
     return execute<OkPacket>(boardColumnQueries.createBoardColumn, [
         board_column.board_id,
         board_column.title,
-        board_column.position
-
+        board_column.position,
+        board_column.tasklist_id
     ]);
 };
 

@@ -16,5 +16,5 @@ export interface Task {
     story_points: number,
     priority: number,
     google_id: string,
-    user_id: number
+    due: string
 }

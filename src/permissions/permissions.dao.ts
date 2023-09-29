@@ -32,10 +32,14 @@ export const readPermissionsBoardId = async (board_id: number) => {
 
 //Create new permission
 export const createPermission = async (permission: Permission) => {
+    console.log("permission dao")
+    console.log(permission)
     return execute<OkPacket>(permissionQueries.createPermission, [
         permission.user_id,
         permission.board_id,
         permission.type,
+        permission.email,
+        permission.tasklist_id
     ]);
 };
 

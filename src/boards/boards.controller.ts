@@ -94,13 +94,16 @@ export const createBoard: RequestHandler = async (
         res.status(200).json(OkPacket);
         console.log(req.body)
         let board_id = OkPacket.insertId;
-        createPermission(req.body.user.user_id, board_id);
+        createPermission(req.body.user_id, board_id, req.body.email, req.body.tasklist_id);
+        createBoardColumn(board_id, "ToDo", 1, req.body.tasklist_id);
+        createBoardColumn(board_id, "In Progress", 2, req.body.tasklist_id);
+        createBoardColumn(board_id, "Done", 3, req.body.tasklist_id);
     } catch (error) {
         console.log(error + "\nError in users.controller.createUser")
     }
 }
 
-async function createPermission(user_id: number, board_id: number) {
+async function createPermission(user_id: number, board_id: number, email: string, tasklist_id: string) {
     try {
         var permission: Permission = {
             permission_id: -1,
@@ -108,10 +111,29 @@ async function createPermission(user_id: number, board_id: number) {
             board_id: board_id,
             type: "admin",
             boards: [],
-            tasklist_id: ""
+            tasklist_id: tasklist_id,
+            email: email,
         }
 
         await PermissionsDAO.createPermission(permission)
+    }
+    catch (error) {
+        console.log(error + "Error reading tasks")
+    }
+}
+
+async function createBoardColumn(board_id: number, title: string, position: number, tasklist_id: string) {
+    try {
+        let column: BoardColumn = {
+            board_id: board_id,
+            title: title,
+            position: position,
+            tasklist_id: tasklist_id,
+            board_column_id: -1,
+            tasks: []
+        }
+
+        await BoardColumnsDAO.createBoardColumn(column)
     }
     catch (error) {
         console.log(error + "Error reading tasks")

@@ -16,7 +16,7 @@ export const boardQueries = {
     SELECT * FROM scrumboardapp.boards WHERE scrumboardapp.boards.tasklist_id = ?
     `,
     createBoard: `
-    INSERT INTO scrumboardapp.boards ( title ) VALUES ( ? )
+    INSERT INTO scrumboardapp.boards ( title, tasklist_id ) VALUES ( ?, ? )
     `,
     updateBoard: `
     UPDATE scrumboardapp.boards SET title = ? WHERE board_id = ?

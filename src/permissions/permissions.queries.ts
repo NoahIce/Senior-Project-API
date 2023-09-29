@@ -16,9 +16,10 @@ export const permissionQueries = {
     SELECT * FROM scrumboardapp.permissions WHERE scrumboardapp.permissions.email = ?
     `,
     readPermissionsBoardId: `
-    SELECT * FROM scrumboardapp.permissions WHERE scrumboardapp.permissions.board_id = ?`,
+    SELECT * FROM scrumboardapp.permissions WHERE scrumboardapp.permissions.board_id = ?
+    `,
     createPermission: `
-    INSERT INTO scrumboardapp.permissions ( user_id, board_id, type ) VALUES ( ?, ?, ? )
+    INSERT INTO scrumboardapp.permissions ( user_id, board_id, type, email, tasklist_id ) VALUES ( ?, ?, ?, ?, ? )
     `,
     updatePermission: `
     UPDATE scrumboardapp.permissions SET user_id = ?, board_id = ?, type = ? WHERE permission_id = ?
