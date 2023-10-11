@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //Users are used to stored the information linked to each user
 import { Response, Request, RequestHandler, response } from "express";
 import { User } from "./users.model";
@@ -51,7 +51,7 @@ export const readUserByEmail: RequestHandler = async (
 ) => {
     try {
         //Get user by Id
-        console.log(req.query.email);
+        //console.log(req.query.email);
         let user = await UserDAO.readUserByEmail(req.query.email as string);
         await readPermissions(user).then(() => {
             //console.log(user[0].permissions[0].boards);

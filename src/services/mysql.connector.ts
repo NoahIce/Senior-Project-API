@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //This service manages the connection to the backend
 import { createPool, Pool } from "mysql";
 

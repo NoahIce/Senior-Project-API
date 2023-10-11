@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //boards are where the users manages their tasks. They contain Board Columns 
 import { Response, Request, RequestHandler, response } from "express";
 import { Board } from "./boards.model";

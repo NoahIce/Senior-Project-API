@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //BoardColumn is the columns within board. The contain tasks
 //Routes to manages how to user gets data
 import { Router } from "express";

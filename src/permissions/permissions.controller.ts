@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //Permissions link the boards and the users together and manage which users have access to which boards
 import { Response, Request, RequestHandler, response } from "express";
 import { Permission } from "./permissions.model";
@@ -81,6 +81,7 @@ export const createPermission: RequestHandler = async (
 ) => {
     try {
         const OkPacket: OkPacket = await PermissionDAO.createPermission(req.body);
+        console.log("create permission")
         res.status(200).json(OkPacket);
     } catch (error) {
         console.log(error + "\nError in users.controller.createUser")

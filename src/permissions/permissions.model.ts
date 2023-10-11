@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //Permissions link the boards and the users together and manage which users have access to which boards
 
 import { Board } from "../boards/boards.model"

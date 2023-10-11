@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //BoardColumn is the columns within board. The contain tasks
 //The model is the client side version of the data in the database
 import { Task } from "../tasks/tasks.model";

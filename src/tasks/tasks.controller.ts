@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //Tasks are used to stored the information of the tasks on each board
 import { Response, Request, RequestHandler, response } from "express";
 import { Task } from "./tasks.model";

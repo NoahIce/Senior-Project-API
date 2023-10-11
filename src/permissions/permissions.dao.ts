@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //Permissions link the boards and the users together and manage which users have access to which boards
 import { execute } from "../services/mysql.connector";
 import { Permission } from "./permissions.model";
@@ -33,7 +33,7 @@ export const readPermissionsBoardId = async (board_id: number) => {
 //Create new permission
 export const createPermission = async (permission: Permission) => {
     console.log("permission dao")
-    console.log(permission)
+    console.log(permission.email)
     return execute<OkPacket>(permissionQueries.createPermission, [
         permission.user_id,
         permission.board_id,

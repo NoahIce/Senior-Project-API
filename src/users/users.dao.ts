@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //Users are used to stored the information linked to each user
 import { execute } from "../services/mysql.connector";
 import { User } from "./users.model";

@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //BoardColumn is the columns within board. The contain tasks
 //Board_column.controller controls all of the stuff the board column does like getting and setting infomation
 import { Response, Request, RequestHandler, response } from "express";
@@ -111,6 +111,7 @@ export const updateBoardColumn: RequestHandler = async (
         //Update column
         const OkPacket: OkPacket = await BoardColumnDAO.updateBoardColumn(req.body);
         res.status(200).json(OkPacket);
+        console.log(req.body)
     } catch (error) {
         console.log(error + "\nError in users.controller.updateUser")
     }
@@ -123,13 +124,13 @@ export const deleteBoardColumn: RequestHandler = async (
 ) => {
     try {
         //Delete all the tasks first
-        deleteTasks(parseInt(req.params.board_column_id as string));
+        //deleteTasks(parseInt(req.params.board_column_id as string));
         //Then delete the column itself
         let columns = await BoardColumnDAO.deleteBoardColumn(parseInt(req.params.board_column_id as string));
-        await readTasks(columns);
+        //await readTasks(columns);
         res.status(200).json(columns);
     } catch (error) {
-        console.log(error + "\nError in users.controller.updateUser")
+        console.log(error + "\nError in board_columns.controller.deleteBoardColumn")
     }
 }
 

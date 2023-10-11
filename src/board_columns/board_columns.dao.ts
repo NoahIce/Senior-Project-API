@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //BoardColumn is the columns within board. The contain tasks
 //BoardColumn DAO is used to manage data access for the board column
 import { execute } from "../services/mysql.connector";
@@ -44,7 +44,7 @@ export const createBoardColumn = async (board_column: BoardColumn) => {
 //update column given json object
 export const updateBoardColumn = async (board_column: BoardColumn) => {
     return execute<OkPacket>(boardColumnQueries.updateBoardColumn, [
-        board_column.board_id,
+        board_column.board_column_id,
         board_column.title,
         board_column.position,
         board_column.board_column_id

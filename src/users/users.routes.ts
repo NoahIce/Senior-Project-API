@@ -1,5 +1,5 @@
 //Noah Ice
-//CST-339 Milestone
+//CST-452 Milestone
 //Users are used to stored the information linked to each user
 import { Router } from "express";
 import * as usersController from "./users.controller";
